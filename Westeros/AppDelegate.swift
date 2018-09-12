@@ -15,7 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        window?.backgroundColor = .cyan
+        
+        //Creamos el modelo
+        let starkSigil = Sigil(image: UIImage(named: "codeIsComing.png")!,description: "Lobo Guargo")
+        let starkHouse = House(name: "Stark", sigil: starkSigil, words: "Se acerca el invierno")
+        //creamos el controlador
+        let starkViewController = HouseDetailViewController(model: starkHouse)
+        
+        //Asignamos el RootViewController
+        window?.rootViewController = starkViewController
         return true
     }
 
