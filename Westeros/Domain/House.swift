@@ -15,12 +15,18 @@ final class House {
     let name: String
     let sigil: Sigil
     let words: Words
+    let wikiUrl: URL
     private var _members: Members
     
-    init(name: String, sigil: Sigil, words: Words){
+    var sortedMember: [Person]{
+        return _members.sorted()
+    }
+    
+    init(name: String, sigil: Sigil, words: Words, url: URL){
         self.name = name
         self.sigil = sigil
         self.words = words
+        self.wikiUrl = url
         self._members = Members()
     }
 }
@@ -35,6 +41,10 @@ extension House{
             return
         }
         _members.insert(person)
+    }
+    
+    func add(persons: Person...){
+        persons.forEach{add(person: $0)}
     }
 }
 

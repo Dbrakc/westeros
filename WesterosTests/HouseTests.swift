@@ -25,8 +25,8 @@ class HouseTests: XCTestCase {
         starkSigil = Sigil (image: UIImage(), description: "Lobo Huargo")
         lannisterSigil = Sigil(image: UIImage(), description: "Leon Rampante")
         
-        stark = House(name: "Stark", sigil: starkSigil, words:"Se acerca el invierno")
-        lannister = House(name: "lannister", sigil: lannisterSigil, words: "Oye mi rugido")
+        stark = House(name: "Stark", sigil: starkSigil, words:"Se acerca el invierno", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Stark")!)
+        lannister = House(name: "lannister", sigil: lannisterSigil, words: "Oye mi rugido", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Lannister")!)
         
         robb = Person(name: "Robb", alias: "El joven Lobo", house: stark)
         arya = Person(name: "Arya", house: stark)
@@ -71,7 +71,7 @@ class HouseTests: XCTestCase {
         //Identidad
         XCTAssertEqual(stark, stark)
         //Igualdad
-        let jinxed: House! = House(name: "Stark", sigil: starkSigil, words: "Se acerca el invierno")
+        let jinxed: House! = House(name: "Stark", sigil: starkSigil, words: "Se acerca el invierno", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Stark")!)
         XCTAssertEqual(stark, jinxed)
         //Desiguald
         XCTAssertNotEqual(stark, lannister)
@@ -83,6 +83,19 @@ class HouseTests: XCTestCase {
     
     func testHouseComparison(){
         XCTAssertLessThan(lannister, stark)
+    }
+    
+    func testHouse_AddPersonsSuddenly_ReturnsTheCorrectCountOfPersons(){
+        XCTAssertEqual(stark.count, 0)
+        stark.add(persons: robb, arya, tyrion)
+        XCTAssertEqual(stark.count, 2)
+        
+    }
+    
+    //Test que comprueba si los miembros viene ordenados
+    
+    func testHouseSortedMembersReturnsASortedArray(){
+        
     }
 
 }

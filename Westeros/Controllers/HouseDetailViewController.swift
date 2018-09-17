@@ -11,7 +11,7 @@ import UIKit
 class HouseDetailViewController: UIViewController {
     
     //MARK: - Properties
-    let model: House
+    var model: House
 
     //MARK: - Outlets
     @IBOutlet weak var houseNameLable: UILabel!
@@ -27,6 +27,8 @@ class HouseDetailViewController: UIViewController {
         self.model = model
         //Despues llamamos a super
         super.init(nibName: nil, bundle: nil)
+      
+        title = model.name
     }
     
     //Este init es el que utilizan los Storyboards
@@ -35,18 +37,70 @@ class HouseDetailViewController: UIViewController {
     }
     
     //MARK: - LifeCycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+   
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
         
         //Syncronizar modelo y vista
         syncModelWithView()
     }
     
+    
+    //Mark: Sync
     func syncModelWithView(){
         houseNameLable.text = "House \(model.name)"
         sigilImageView.image = model.sigil.image
         wordsLable.text = model.words
+        title = model.name
+        
     }
     
+    func setupUI() {
+        //Crear los botones
+        let wikiButton = UIBarButtonItem(title: "Wiki", style: .plain, target: self, action: #selector(displayWiki))
+        
+        let membersButton = UIBarButtonItem(title: "Members", style: .plain, target: self, action: #selector(displayMembers))
+        
+        //Añadir el botón
+        navigationItem.setRightBarButtonItems([membersButton,wikiButton], animated: true)
+        
+        
+    }
+    
+    
+    @objc func displayWiki(){
+        //Crear el VC destion
+        let wikiViewController = WikiViewController(model: model)
+        
+    
+        
+        //Navegar a el push
+        navigationController?.pushViewController(wikiViewController, animated: true)
+        
+    }
+    
+    @objc func displayMembers(){
+        //Crear el VC destion
+        let memberListViewController = MemberListViewController(model: model.sortedMember)
+        
+        
+        //Navergar a el push
+        navigationController?.pushViewController(memberListViewController, animated: true)
+    }
  
 }
+
+
+extension HouseDetailViewController : HouseListViewControllerDelegate{
+   
+    func houseListViewController(_ vc: HouseListViewController, didSelectedHouse house: House) {
+        
+        self.model = house
+        syncModelWithView()
+    }
+    
+    
+}
+
