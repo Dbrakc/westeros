@@ -7,6 +7,8 @@
 //
 
 import Foundation
-
-let HouseDidChangeNoficationName = "HouseDidChange"
-let HouseKey = "HouseKey"
+enum Constants{
+    static let houseDidChangeNoficationName = "HouseDidChange"
+    static let houseKey = "HouseKey"
+    static let lastHouseKey = "lastHouseKey"
+}

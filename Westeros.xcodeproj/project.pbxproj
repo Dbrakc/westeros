@@ -30,6 +30,11 @@
 		23786D9C2141C9AF00FB006A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23786D9B2141C9AF00FB006A /* Person.swift */; };
 		23786D9E2141CA0D00FB006A /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23786D9D2141CA0D00FB006A /* PersonTests.swift */; };
 		238A85C12151A89200E9CC24 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238A85C02151A89200E9CC24 /* Constants.swift */; };
+		238A85C52151B57000E9CC24 /* SeasonsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238A85C42151B57000E9CC24 /* SeasonsTest.swift */; };
+		238A85C72151B60A00E9CC24 /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238A85C62151B60A00E9CC24 /* Season.swift */; };
+		23B0C6AE2152D06D00F0E3C8 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C6AD2152D06C00F0E3C8 /* Date.swift */; };
+		23B0C6B02152D98000F0E3C8 /* EpisodesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C6AF2152D98000F0E3C8 /* EpisodesTest.swift */; };
+		23B0C6B22152DAC500F0E3C8 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C6B12152DAC500F0E3C8 /* Notification+Name.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +75,11 @@
 		23786D9B2141C9AF00FB006A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		23786D9D2141CA0D00FB006A /* PersonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTests.swift; sourceTree = "<group>"; };
 		238A85C02151A89200E9CC24 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		238A85C42151B57000E9CC24 /* SeasonsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsTest.swift; sourceTree = "<group>"; };
+		238A85C62151B60A00E9CC24 /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
+		23B0C6AD2152D06C00F0E3C8 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		23B0C6AF2152D98000F0E3C8 /* EpisodesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesTest.swift; sourceTree = "<group>"; };
+		23B0C6B12152DAC500F0E3C8 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				231C1B062149B9F500707320 /* UIViewController+Navigation.swift */,
+				23B0C6AD2152D06C00F0E3C8 /* Date.swift */,
+				23B0C6B12152DAC500F0E3C8 /* Notification+Name.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -172,6 +184,8 @@
 				23786D942141BC0F00FB006A /* HouseTests.swift */,
 				23786D9D2141CA0D00FB006A /* PersonTests.swift */,
 				231C1B082149BBFA00707320 /* RepositoriesTest.swift */,
+				238A85C42151B57000E9CC24 /* SeasonsTest.swift */,
+				23B0C6AF2152D98000F0E3C8 /* EpisodesTest.swift */,
 			);
 			path = WesterosTests;
 			sourceTree = "<group>";
@@ -183,6 +197,7 @@
 				23786D972141BDA300FB006A /* House.swift */,
 				23786D992141C22800FB006A /* Sigil.swift */,
 				23786D9B2141C9AF00FB006A /* Person.swift */,
+				238A85C62151B60A00E9CC24 /* Season.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -299,12 +314,15 @@
 				238A85C12151A89200E9CC24 /* Constants.swift in Sources */,
 				231C1B072149B9F500707320 /* UIViewController+Navigation.swift in Sources */,
 				231C1B002149A32000707320 /* HouseDetailViewController.swift in Sources */,
+				238A85C72151B60A00E9CC24 /* Season.swift in Sources */,
 				23786D9A2141C22800FB006A /* Sigil.swift in Sources */,
 				23233B83215189B900E7D849 /* MemberListViewController.swift in Sources */,
 				23786D982141BDA300FB006A /* House.swift in Sources */,
 				23786D752141B36C00FB006A /* AppDelegate.swift in Sources */,
 				234034432150336F00BDB0C2 /* WikiViewController.swift in Sources */,
 				23786D9C2141C9AF00FB006A /* Person.swift in Sources */,
+				23B0C6B22152DAC500F0E3C8 /* Notification+Name.swift in Sources */,
+				23B0C6AE2152D06D00F0E3C8 /* Date.swift in Sources */,
 				23403447215059D500BDB0C2 /* HouseListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,6 +331,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23B0C6B02152D98000F0E3C8 /* EpisodesTest.swift in Sources */,
+				238A85C52151B57000E9CC24 /* SeasonsTest.swift in Sources */,
 				23786D952141BC0F00FB006A /* HouseTests.swift in Sources */,
 				231C1B092149BBFA00707320 /* RepositoriesTest.swift in Sources */,
 				23786D9E2141CA0D00FB006A /* PersonTests.swift in Sources */,

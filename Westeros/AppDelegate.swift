@@ -36,11 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = controllers*/
         
+      
         //Master
         let houseListViewController = HouseListViewController(model: houses)
-        
+        let lastHouseSelected = houseListViewController.lastSelectedHouse()
         //Detail
-        let houseDetailWiewController = HouseDetailViewController(model: houses.first!)
+        let houseDetailWiewController = HouseDetailViewController(model: lastHouseSelected)
         
         
         //Asignar delegados

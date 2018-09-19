@@ -43,7 +43,7 @@ class WikiViewController: UIViewController {
         
         //Subscribirse a la notificacion
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(houseDidChange), name: NSNotification.Name(rawValue: HouseDidChangeNoficationName), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(houseDidChange), name: .houseDidChangeNotification, object: nil)
         
     }
     override func viewDidLoad() {
@@ -59,7 +59,7 @@ class WikiViewController: UIViewController {
     @objc func houseDidChange(notification: Notification){
         //Sacar la info de la notificacion
         guard let info = notification.userInfo,
-            let house : House = info[HouseKey] as? House else {return}
+            let house : House = info[Constants.houseKey] as? House else {return}
         
         
         //Actualizar el modelo
