@@ -10,9 +10,11 @@ import XCTest
 @testable import Westeros
 class RepositoriesTest: XCTestCase {
     var localHouses: [House]!
+    var localSeasons: [Season]!
 
     override func setUp() {
         localHouses = Repository.local.houses
+        localSeasons = Repository.local.seasons
     }
 
     override func tearDown() {
@@ -52,6 +54,27 @@ class RepositoriesTest: XCTestCase {
         XCTAssertTrue(filtered0.isEmpty)
         
     }
+    
+    
+    func testLocalRepositorySeasonsCreation(){
+        XCTAssertNotNil(localSeasons)
+        XCTAssertEqual(localSeasons.count, 7)
+        let season3 = localSeasons[2]
+        let episodeS3E2 = season3.episodes[1]
+        XCTAssertEqual(season3, episodeS3E2.season )
+    }
+    
+    func testSeasonsLocalRepositoryHouseFiltering(){
+        let filtered = Repository.local.seasons{ $0.releaseDate < Date.dateWithDay(01, month: 01, year: 2012)!}
+        
+        XCTAssertEqual(filtered.first?.name, "Season 1")
+        
+        
+        let filtered0 = Repository.local.houses{$0.count == 0}
+        XCTAssertTrue(filtered0.isEmpty)
+        
+    }
+    
 
 
 

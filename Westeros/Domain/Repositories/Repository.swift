@@ -14,13 +14,20 @@ final class Repository {
 }
 
 protocol HouseFactory {
-    typealias Filter = (House) -> Bool
+    typealias HouseFilter = (House) -> Bool
     
     var houses: [House]{get}
     
     func house (named: String)->House?
     
-    func houses (filteredBy filter: Filter)->[House]
+    func houses (filteredBy filter: HouseFilter)->[House]
+}
+
+protocol SeasonFactory {
+    typealias SeasonFilter = (Season) -> Bool
+    var seasons : [Season] {get}
+    
+    func seasons (filteredBy filter: SeasonFilter) ->[Season]
 }
 
 
@@ -61,6 +68,64 @@ final class LocalFactory: HouseFactory{
         return houses.filter(filteredBy)
     }
     
+}
+
+extension LocalFactory : SeasonFactory{
+    
+    var seasons : [Season] {
+        let dateS1E1 = Date.dateWithDay(17, month: 04, year: 2011)
+        let dateS1E2 = Date.dateWithDay(24, month: 04, year: 2011)
+        let dateS2E1 = Date.dateWithDay(01, month: 04, year: 2012)
+        let dateS2E2 = Date.dateWithDay(08, month: 04, year: 2012)
+        let dateS3E1 = Date.dateWithDay(31, month: 03, year: 2013)
+        let dateS3E2 = Date.dateWithDay(07, month: 04, year: 2013)
+        let dateS4E1 = Date.dateWithDay(06, month: 04, year: 2014)
+        let dateS4E2 = Date.dateWithDay(13, month: 04, year: 2014)
+        let dateS5E1 = Date.dateWithDay(12, month: 04, year: 2015)
+        let dateS5E2 = Date.dateWithDay(19, month: 04, year: 2015)
+        let dateS6E1 = Date.dateWithDay(24, month: 04, year: 2016)
+        let dateS6E2 = Date.dateWithDay(01, month: 05, year: 2016)
+        let dateS7E1 = Date.dateWithDay(16, month: 07, year: 2017)
+        let dateS7E2 = Date.dateWithDay(23, month: 07, year: 2017)
+        
+        
+        let episodeS1E1 = Episode (withTitle: "Winter is comming", issueDate: dateS1E1!)
+        let episodeS1E2 = Episode (withTitle: "The Kingsroad", issueDate: dateS1E2!)
+        let episodeS2E1 = Episode (withTitle: "The north remembers", issueDate: dateS2E1!)
+        let episodeS2E2 = Episode (withTitle: "The night lands", issueDate: dateS2E2!)
+        let episodeS3E1 = Episode (withTitle: "Valar Dohaeris" , issueDate: dateS3E1!)
+        let episodeS3E2 = Episode (withTitle: "Dark wings, dark words", issueDate: dateS3E2!)
+        let episodeS4E1 = Episode (withTitle: "Two swords", issueDate: dateS4E1!)
+        let episodeS4E2 = Episode (withTitle: "The lion and the rose", issueDate: dateS4E2!)
+        let episodeS5E1 = Episode (withTitle: "The wars to come", issueDate: dateS5E1!)
+        let episodeS5E2 = Episode (withTitle: "The house of black and White", issueDate: dateS5E2!)
+        let episodeS6E1 = Episode (withTitle: "The red woman", issueDate: dateS6E1!)
+        let episodeS6E2 = Episode (withTitle: "Home", issueDate: dateS6E2!)
+        let episodeS7E1 = Episode (withTitle: "Dragonston", issueDate: dateS7E1!)
+        let episodeS7E2 = Episode (withTitle: "Stormborn", issueDate: dateS7E2!)
+        
+        
+        
+        let season1 = Season(withName: "Season 1", episodeArray: [episodeS1E1, episodeS1E2])
+        let season2 = Season(withName: "Season 2", episodeArray: [episodeS2E1, episodeS2E2])
+        let season3 = Season(withName: "Season 3", episodeArray: [episodeS3E1, episodeS3E2])
+        let season4 = Season(withName: "Season 4", episodeArray: [episodeS4E1, episodeS4E2])
+        let season5 = Season(withName: "Season 5", episodeArray: [episodeS5E1, episodeS5E2])
+        let season6 = Season(withName: "Season 6", episodeArray: [episodeS6E1, episodeS6E2])
+        let season7 = Season(withName: "Season 7", episodeArray: [episodeS7E1, episodeS7E2])
+        
+        
+        let seasons = [season1!, season2!, season3!, season4!, season5!, season6!, season7!].sorted()
+        
+        seasons.forEach{season in season.episodes.forEach{$0.season = season}}
+        
+        return seasons
+    }
+    
+    
+    func seasons(filteredBy filter: (Season) -> Bool) -> [Season] {
+        return seasons.filter(filter)
+    }
     
     
 }
