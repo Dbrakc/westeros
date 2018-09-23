@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .cyan
         
         //Creamos los modelo
-        let houses = Repository.local.houses;
+        let houses = Repository.local.houses
+        let seasons = Repository.local.seasons
         //creamos los controlador
         /*var controllers = [UIViewController]()
         
@@ -56,10 +57,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         splitViewController.viewControllers = [houseListViewController.wrappedInNavigation(), houseDetailWiewController.wrappedInNavigation()]
         
-    
+        let seasonListViewControler = SeasonListViewController(withSeasonsList: seasons)
+        
+        
         
         //Asignamos el RootViewController
-        window?.rootViewController = splitViewController
+        let houseCollectionVC = HouseCollectionViewController(withModel: houses)
+        window?.rootViewController = seasonListViewControler
         window?.makeKeyAndVisible()
         return true
     }
