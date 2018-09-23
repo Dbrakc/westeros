@@ -18,3 +18,9 @@ extension Date {
         return calendar.date(from: dateComponents)
     }
 }
+
+extension Date {
+    var onlyDateDescription: String {
+        let fullDescritpionDate10Index = self.description.index(self.description.startIndex, offsetBy: 10)
+        return String(self.description[..<fullDescritpionDate10Index])
+    }}
