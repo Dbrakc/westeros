@@ -21,6 +21,8 @@ protocol HouseListViewControllerDelegate {
 
 class HouseListViewController: UITableViewController {
     
+    
+    
     // MARK: - Properties
     let model : [House]
     var delegate : HouseListViewControllerDelegate?
@@ -36,6 +38,19 @@ class HouseListViewController: UITableViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: -LifeCycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //Siempre que creamos celdas personalizadas tenemos que registrarlas
+        registerCustomCell()
+    }
+    
+    func registerCustomCell(){
+        let nib = UINib(nibName: "HouseCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: HouseCell.reuseIdentifierCell)
     }
   
    
@@ -54,20 +69,21 @@ class HouseListViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellId = "HouseCell"
+        let cellId = HouseCell.reuseIdentifierCell
         
         // Descubrir el item (casa) que tenemos que mostar
         let house = model[indexPath.row]
         
         // Crear una celda o que nos la den del caché
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellId )
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellId ) as? HouseCell
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: cellId)
+            cell = HouseCell(style: .default, reuseIdentifier: cellId)
         }
         
         // Sincronizar celda (view) y casa (model)
-        cell?.imageView?.image = house.sigil.image
-        cell?.textLabel?.text = house.name
+        cell?.sigilImageView.image = house.sigil.image
+        cell?.nameLabel.text = house.name
+        cell?.wordsLabel.text = house.words
         
         // Devolver la celda
         return cell!
@@ -81,7 +97,7 @@ class HouseListViewController: UITableViewController {
     //MARK: - Delegate
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 80
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
