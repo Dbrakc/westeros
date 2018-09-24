@@ -29,7 +29,7 @@ class WikiViewController: UIViewController {
         self.model = model
         //2. llamo a super
         super.init(nibName: nil, bundle: Bundle (for: type(of: self)))
-        //3. Usas las propierties de tu superclase
+        //3. Usas las properties de tu superclase
         title = model.name;
         
     }

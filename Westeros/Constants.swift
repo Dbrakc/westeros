@@ -11,4 +11,5 @@ enum Constants{
     static let houseDidChangeNoficationName = "HouseDidChange"
     static let houseKey = "HouseKey"
     static let lastHouseKey = "lastHouseKey"
+    static let seasonListNavigationViewControllerTitle = "Seasons"
 }

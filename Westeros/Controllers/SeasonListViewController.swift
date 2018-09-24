@@ -17,6 +17,7 @@ class SeasonListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.dataSource = self
+            tableView.delegate = self
         }
     }
     
@@ -24,6 +25,7 @@ class SeasonListViewController: UIViewController {
     init(withSeasonsList seasons: [Season]){
         self.seasons = seasons
         super.init(nibName: nil, bundle: nil)
+        title = Constants.seasonListNavigationViewControllerTitle
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,15 +50,27 @@ extension SeasonListViewController : UITableViewDataSource{
         let season = seasons[indexPath.row]
         var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
         if cell == nil{
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellId)
         }
         
         //Sincronizar modelo-vista
         cell?.textLabel?.text = season.name
-        cell?.detailTextLabel?.text = season.description
+       
         
         return cell!
     }
     
+}
+
+extension SeasonListViewController : UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedSeason = season (at:  indexPath.row)
+        let seasonDetailViewController = SeasonDetailViewController(withSeason: selectedSeason)
+        self.navigationController?.pushViewController(seasonDetailViewController, animated: true)
+        
+    }
     
+    func season(at index: Int)->Season{
+        return seasons[index]
+    }
 }

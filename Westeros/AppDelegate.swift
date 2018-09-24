@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Asignamos el RootViewController
         let houseCollectionVC = HouseCollectionViewController(withModel: houses)
-        window?.rootViewController = seasonListViewControler
+        window?.rootViewController = seasonListViewControler.wrappedInNavigation()
         window?.makeKeyAndVisible()
         return true
     }

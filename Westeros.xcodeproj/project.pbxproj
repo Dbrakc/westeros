@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		23136661215848A800FF86FF /* SeasonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313665F215848A800FF86FF /* SeasonListViewController.swift */; };
 		23136662215848A800FF86FF /* SeasonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23136660215848A800FF86FF /* SeasonListViewController.xib */; };
+		23136665215851AB00FF86FF /* SeasonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23136663215851AB00FF86FF /* SeasonDetailViewController.swift */; };
+		23136666215851AB00FF86FF /* SeasonDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23136664215851AB00FF86FF /* SeasonDetailViewController.xib */; };
 		231C1AF72149A1A900707320 /* codeIsComing.png in Resources */ = {isa = PBXBuildFile; fileRef = 231C1AF62149A1A900707320 /* codeIsComing.png */; };
 		231C1AF92149A1B500707320 /* lannister.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 231C1AF82149A1B500707320 /* lannister.jpg */; };
 		231C1AFB2149A1BC00707320 /* targaryenSmall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 231C1AFA2149A1BC00707320 /* targaryenSmall.jpg */; };
@@ -59,6 +61,8 @@
 /* Begin PBXFileReference section */
 		2313665F215848A800FF86FF /* SeasonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonListViewController.swift; sourceTree = "<group>"; };
 		23136660215848A800FF86FF /* SeasonListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonListViewController.xib; sourceTree = "<group>"; };
+		23136663215851AB00FF86FF /* SeasonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonDetailViewController.swift; sourceTree = "<group>"; };
+		23136664215851AB00FF86FF /* SeasonDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonDetailViewController.xib; sourceTree = "<group>"; };
 		231C1AF62149A1A900707320 /* codeIsComing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = codeIsComing.png; sourceTree = "<group>"; };
 		231C1AF82149A1B500707320 /* lannister.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lannister.jpg; sourceTree = "<group>"; };
 		231C1AFA2149A1BC00707320 /* targaryenSmall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = targaryenSmall.jpg; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 				23233B82215189B900E7D849 /* MemberListViewController.xib */,
 				2313665F215848A800FF86FF /* SeasonListViewController.swift */,
 				23136660215848A800FF86FF /* SeasonListViewController.xib */,
+				23136663215851AB00FF86FF /* SeasonDetailViewController.swift */,
+				23136664215851AB00FF86FF /* SeasonDetailViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23136666215851AB00FF86FF /* SeasonDetailViewController.xib in Resources */,
 				231C1AF92149A1B500707320 /* lannister.jpg in Resources */,
 				234034442150336F00BDB0C2 /* WikiViewController.xib in Resources */,
 				23B0C6B82152DF2D00F0E3C8 /* HouseCell.xib in Resources */,
@@ -365,6 +372,7 @@
 				23136661215848A800FF86FF /* SeasonListViewController.swift in Sources */,
 				231C1B002149A32000707320 /* HouseDetailViewController.swift in Sources */,
 				238A85C72151B60A00E9CC24 /* Season.swift in Sources */,
+				23136665215851AB00FF86FF /* SeasonDetailViewController.swift in Sources */,
 				23786D9A2141C22800FB006A /* Sigil.swift in Sources */,
 				23233B83215189B900E7D849 /* MemberListViewController.swift in Sources */,
 				23786D982141BDA300FB006A /* House.swift in Sources */,
