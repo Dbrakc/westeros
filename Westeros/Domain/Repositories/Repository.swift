@@ -25,6 +25,7 @@ protocol HouseFactory {
 
 protocol SeasonFactory {
     typealias SeasonFilter = (Season) -> Bool
+    
     var seasons : [Season] {get}
     
     func seasons (filteredBy filter: SeasonFilter) ->[Season]
@@ -34,6 +35,7 @@ protocol SeasonFactory {
 //Cuando necesitamos crear muchos objetos del mismo tipo
 final class LocalFactory: HouseFactory{
     
+    
     var houses : [House]{
         //Houses creation here
         
@@ -41,9 +43,9 @@ final class LocalFactory: HouseFactory{
         let lannisterSigil = Sigil(image: UIImage(named: "lannister.jpg")!,description: "León rampante")
         let targaryenSigil = Sigil(image: UIImage(named: "targaryenSmall.jpg")!, description: "Dragón tricéfalo")
         
-        let starkHouse = House(name: "Stark", sigil: starkSigil, words: "Se acerca el invierno", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Stark")!)
-        let lannisterHouse = House(name: "Lannister", sigil: lannisterSigil, words: "Oyer mi rugido", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Lannister")!)
-        let targaryenHouse = House(name: "Targaryen", sigil: targaryenSigil, words: "Fuego y sangre", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Targaryen")!)
+        let starkHouse = House(name: .stark , sigil: starkSigil, words: "Se acerca el invierno", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Stark")!)
+        let lannisterHouse = House(name: .lannister, sigil: lannisterSigil, words: "Oyer mi rugido", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Lannister")!)
+        let targaryenHouse = House(name: .targaryen, sigil: targaryenSigil, words: "Fuego y sangre", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Targaryen")!)
         //Characters creation
         let robb = Person (name: "Robb", alias: "El Joven Lobo", house:starkHouse)
         let arya = Person (name: "Arya", house: starkHouse)
@@ -62,6 +64,10 @@ final class LocalFactory: HouseFactory{
     
     func house(named name: String) -> House? {
         return Repository.local.houses.filter{ $0.name.uppercased() == name.uppercased() }.first
+    }
+    
+    func house(named houseName: HouseName ) -> House?{
+        return Repository.local.houses.filter{ $0.name.uppercased() == houseName.rawValue.uppercased() }.first
     }
     
     func houses(filteredBy: (House) -> Bool) -> [House] {
@@ -89,20 +95,20 @@ extension LocalFactory : SeasonFactory{
         let dateS7E2 = Date.dateWithDay(23, month: 07, year: 2017)
         
         
-        let episodeS1E1 = Episode (withTitle: "Winter is comming", issueDate: dateS1E1!)
-        let episodeS1E2 = Episode (withTitle: "The Kingsroad", issueDate: dateS1E2!)
-        let episodeS2E1 = Episode (withTitle: "The north remembers", issueDate: dateS2E1!)
-        let episodeS2E2 = Episode (withTitle: "The night lands", issueDate: dateS2E2!)
-        let episodeS3E1 = Episode (withTitle: "Valar Dohaeris" , issueDate: dateS3E1!)
-        let episodeS3E2 = Episode (withTitle: "Dark wings, dark words", issueDate: dateS3E2!)
-        let episodeS4E1 = Episode (withTitle: "Two swords", issueDate: dateS4E1!)
-        let episodeS4E2 = Episode (withTitle: "The lion and the rose", issueDate: dateS4E2!)
-        let episodeS5E1 = Episode (withTitle: "The wars to come", issueDate: dateS5E1!)
-        let episodeS5E2 = Episode (withTitle: "The house of black and White", issueDate: dateS5E2!)
-        let episodeS6E1 = Episode (withTitle: "The red woman", issueDate: dateS6E1!)
-        let episodeS6E2 = Episode (withTitle: "Home", issueDate: dateS6E2!)
-        let episodeS7E1 = Episode (withTitle: "Dragonston", issueDate: dateS7E1!)
-        let episodeS7E2 = Episode (withTitle: "Stormborn", issueDate: dateS7E2!)
+        let episodeS1E1 = Episode (withTitle: "Winter is comming", issueDate: dateS1E1!, resume: Constants.resumeS1E1 )
+        let episodeS1E2 = Episode (withTitle: "The Kingsroad", issueDate: dateS1E2!, resume: Constants.resumeS1E2)
+        let episodeS2E1 = Episode (withTitle: "The north remembers", issueDate: dateS2E1!, resume: Constants.resumeS2E1)
+        let episodeS2E2 = Episode (withTitle: "The night lands", issueDate: dateS2E2!, resume: Constants.resumeS2E2)
+        let episodeS3E1 = Episode (withTitle: "Valar Dohaeris" , issueDate: dateS3E1!, resume: Constants.resumeS3E1)
+        let episodeS3E2 = Episode (withTitle: "Dark wings, dark words", issueDate: dateS3E2!, resume: Constants.resumeS3E2)
+        let episodeS4E1 = Episode (withTitle: "Two swords", issueDate: dateS4E1!, resume: Constants.resumeS4E1)
+        let episodeS4E2 = Episode (withTitle: "The lion and the rose", issueDate: dateS4E2!, resume: Constants.resumeS4E2)
+        let episodeS5E1 = Episode (withTitle: "The wars to come", issueDate: dateS5E1!, resume: Constants.resumeS5E1)
+        let episodeS5E2 = Episode (withTitle: "The house of black and White", issueDate: dateS5E2!, resume: Constants.resumeS5E2)
+        let episodeS6E1 = Episode (withTitle: "The red woman", issueDate: dateS6E1!, resume: Constants.resumeS6E1)
+        let episodeS6E2 = Episode (withTitle: "Home", issueDate: dateS6E2!, resume: Constants.resumeS6E2)
+        let episodeS7E1 = Episode (withTitle: "Dragonston", issueDate: dateS7E1!, resume: Constants.resumeS7E1)
+        let episodeS7E2 = Episode (withTitle: "Stormborn", issueDate: dateS7E2!, resume: Constants.resumeS7E2)
         
         
         
@@ -117,7 +123,7 @@ extension LocalFactory : SeasonFactory{
         
         let seasons = [season1!, season2!, season3!, season4!, season5!, season6!, season7!].sorted()
         
-        seasons.forEach{season in season.episodes.forEach{$0.season = season}}
+        seasons.forEach{setEpisodesSeason(season: $0)}
         
         return seasons
     }
@@ -125,6 +131,10 @@ extension LocalFactory : SeasonFactory{
     
     func seasons(filteredBy filter: (Season) -> Bool) -> [Season] {
         return seasons.filter(filter)
+    }
+    
+    func setEpisodesSeason(season: Season){
+       season.episodesSorted.forEach{$0.season = season}
     }
     
     

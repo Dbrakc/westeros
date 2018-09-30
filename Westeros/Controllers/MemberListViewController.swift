@@ -12,15 +12,22 @@ class MemberListViewController: UIViewController {
     
     // MARK: - IBOutlets
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!{
+        didSet{
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
     
     // MARK: - Properties
-    let model: [Person]
+    var model: [Person]
+    var lastHouseDetailViewController : HouseDetailViewController?
     
     // MARK: - Inicialization
     init (model: [Person]){
         self.model  =  model
         super.init(nibName: nil, bundle: nil)
+        self.title = "Members"
     
     }
     
@@ -28,10 +35,48 @@ class MemberListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.dataSource = self
+    // MARK:  LifeCycle
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //Subscribirse a la notificacion
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(houseDidChange), name: .houseDidChangeNotification, object: nil)
+        
     }
+    
+  
+    
+    //Mark: Notifications
+    
+    @objc func houseDidChange(notification: Notification){
+        //Sacar la info de la notificacion
+        guard let info = notification.userInfo,
+            let house : House = info[Constants.houseKey] as? House else {return}
+        
+        
+        //Actualizar el modelo
+        self.model = house.sortedMember
+        
+        self.lastHouseDetailViewController = HouseDetailViewController(model: house)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: house.name, style: .plain, target: self, action: #selector(backButtonPress))
+        
+        //Sincronizar
+        tableView.reloadData()
+        
+    }
+    
+    @objc func backButtonPress (){
+        guard let viewController = lastHouseDetailViewController else{
+            return
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    // MARK:  Methods
+    
+
     
     
 }
@@ -58,6 +103,15 @@ extension MemberListViewController: UITableViewDataSource{
         cell?.detailTextLabel?.text = person.alias
         
         return cell!
+    }
+    
+}
+
+extension MemberListViewController : UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedMember = model [indexPath.row]
+        let membersDetailViewController = MembersDetailViewController(withPerson: selectedMember)
+        self.navigationController?.pushViewController(membersDetailViewController, animated: true)
     }
     
 }

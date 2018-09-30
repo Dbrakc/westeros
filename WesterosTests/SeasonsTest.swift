@@ -22,8 +22,8 @@ class SeasonsTest: XCTestCase {
     override func setUp() {
         date = Date.dateWithDay(29, month: 12, year: 1985)
         anotherDate  = Date.dateWithDay(5, month: 6, year: 2015)
-        episode = Episode(withTitle: "Episode 1", issueDate: date)
-        episode2 = Episode(withTitle: "Episode 2", issueDate: anotherDate)
+        episode = Episode(withTitle: "Episode 1", issueDate: date, resume: Constants.resumeS7E2)
+        episode2 = Episode(withTitle: "Episode 2", issueDate: anotherDate, resume: Constants.resumeS7E2)
         season = Season (withName: "Season 1", episodeArray: [episode])
         seasonEqualSeason = Season (withName: "Season 1", episodeArray: [episode])
         seasonDifferentName = Season (withName: "Season 0", episodeArray: [episode])
@@ -68,6 +68,8 @@ class SeasonsTest: XCTestCase {
         XCTAssertGreaterThan(seasonDifferentDate, season)
         XCTAssertGreaterThan(season, seasonDifferentName)
     }
+    
+    
 
 }
 

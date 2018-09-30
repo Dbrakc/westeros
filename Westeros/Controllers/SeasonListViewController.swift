@@ -8,10 +8,20 @@
 
 import UIKit
 
+protocol SeasonListDetailableViewControllerDelegate {
+    //Should
+    //Will
+    //Did
+    //El primer parametro de las funciones del Delegate es SIEMPRE el objeto
+    func SeasonListDetailableViewController(_ vc: SeasonListViewController, didSelectedSeason season: Season)
+    
+}
+
 class SeasonListViewController: UIViewController {
     
     // MARK: - Properties
     let seasons : [Season]
+    var delegate: SeasonListDetailableViewControllerDelegate?
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!{
@@ -22,7 +32,7 @@ class SeasonListViewController: UIViewController {
     }
     
     // MARK: - Initializers
-    init(withSeasonsList seasons: [Season]){
+    init(withSeasonsArray seasons: [Season]){
         self.seasons = seasons
         super.init(nibName: nil, bundle: nil)
         title = Constants.seasonListNavigationViewControllerTitle
@@ -30,12 +40,6 @@ class SeasonListViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    //MARK: -LifeCycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 
 }
@@ -47,7 +51,7 @@ extension SeasonListViewController : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = "SeasonCell"
-        let season = seasons[indexPath.row]
+        let season = seasons(at: indexPath.row)
         var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
         if cell == nil{
             cell = UITableViewCell(style: .default, reuseIdentifier: cellId)
@@ -59,18 +63,67 @@ extension SeasonListViewController : UITableViewDataSource{
         
         return cell!
     }
+    func seasons(at index: Int)->Season{
+        return seasons[index]
+    }
     
 }
 
 extension SeasonListViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedSeason = season (at:  indexPath.row)
-        let seasonDetailViewController = SeasonDetailViewController(withSeason: selectedSeason)
-        self.navigationController?.pushViewController(seasonDetailViewController, animated: true)
+        let selectedSeason = seasons (at:  indexPath.row)
+        /*let seasonDetailViewController = SeasonDetailViewController(withSeason: selectedSeason)*/
+        /*self.navigationController?.pushViewController(seasonDetailViewController, animated: true)*/
+        
+    
+        
+        //Siempre emitir las notificaciones a través de los dos métodos.
+        
+        //Avisar al delegado
+        delegate?.SeasonListDetailableViewController(self, didSelectedSeason: selectedSeason)
+        
+        // Enviar una notifiación
+        let notificationCenter = NotificationCenter.default
+        let notification = Notification(name: .seasonDidChangeNotification, object: self , userInfo: [Constants.seasonKey: selectedSeason])
+        notificationCenter.post(notification)
+        
+        //Guardamos la ultima casa seleccionada
+        saveLastSelectedSeason(at: indexPath.row)
         
     }
-    
-    func season(at index: Int)->Season{
-        return seasons[index]
-    }
 }
+    
+extension SeasonListViewController {
+    func saveLastSelectedSeason (at index: Int){
+        //Aquí vamos a guar
+        let userDefaults  = UserDefaults.standard
+            
+        //lo insertamos en el diccionario de userDefaults
+        userDefaults.set(index, forKey: Constants.lastSeasonKey)
+            
+        //guardar
+        userDefaults.synchronize()
+            
+            
+    }
+        
+    func lastSelectedSeason () -> Season {
+            //Averiguar cual es la ultima row sel
+        let index = UserDefaults.standard.integer(forKey: Constants.lastSeasonKey) //Value 0 es default
+        return seasons(at: index)
+    }
+        
+}
+
+extension SeasonListViewController : Detailable{
+    var detailViewController: UIViewController {
+        return (delegate as! UIViewController).wrappedInNavigation()
+    }
+    
+    
+}
+
+
+    
+    
+

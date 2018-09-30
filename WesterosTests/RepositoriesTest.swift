@@ -44,6 +44,16 @@ class RepositoriesTest: XCTestCase {
 
     }
     
+    func testLocalRepositoryReturnsHousesByHouseName(){
+        let stark = Repository.local.house(named: .stark)
+        
+        XCTAssertEqual(stark?.name, "Stark")
+        
+        let keepcoding = Repository.local.house(named:"keepcoding")
+        XCTAssertNil(keepcoding)
+        
+    }
+    
     func testHouseLocalRepositoryHouseFiltering(){
         let filtered = Repository.local.houses{$0.count == 1}
         
@@ -56,11 +66,12 @@ class RepositoriesTest: XCTestCase {
     }
     
     
+    
     func testLocalRepositorySeasonsCreation(){
         XCTAssertNotNil(localSeasons)
         XCTAssertEqual(localSeasons.count, 7)
         let season3 = localSeasons[2]
-        let episodeS3E2 = season3.episodes[1]
+        let episodeS3E2 = season3.episodesSorted[1]
         XCTAssertEqual(season3, episodeS3E2.season )
     }
     
@@ -72,6 +83,12 @@ class RepositoriesTest: XCTestCase {
         
         let filtered0 = Repository.local.houses{$0.count == 0}
         XCTAssertTrue(filtered0.isEmpty)
+        
+    }
+    
+    func testSeasonsLocalRepo_setEpisodeSeasons_returnEpisodeWithSeason(){
+        Repository.local.setEpisodesSeason(season: localSeasons[3])
+        XCTAssertEqual(localSeasons[3],localSeasons[3].episodesSorted[1].season )
         
     }
     

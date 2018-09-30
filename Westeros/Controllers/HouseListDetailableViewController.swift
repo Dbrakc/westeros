@@ -1,38 +1,42 @@
 //
-//  HouseListViewController.swift
+//  HouseListDetailableViewController.swift
 //  Westeros
 //
-//  Created by David Braga  on 17/9/18.
+//  Created by David Braga  on 28/09/2018.
 //  Copyright © 2018 David Braga . All rights reserved.
 //
 
 import UIKit
-
-protocol HouseListViewControllerDelegate {
+protocol HouseListDetailableViewControllerDelegate {
     //Should
     //Will
     //Did
     //El primer parametro de las funciones del Delegate es SIEMPRE el objeto
-    func houseListViewController(_ vc: HouseListViewController, didSelectedHouse house: House)
+    func houseListDetailableViewController(_ vc: HouseListDetailableViewController, didSelectedHouse house: House)
     
 }
 
 
 
-class HouseListViewController: UITableViewController {
-    
-    
-    
+class HouseListDetailableViewController: UIViewController {
     // MARK: - Properties
     let model : [House]
-    var delegate : HouseListViewControllerDelegate?
+    var delegate : HouseListDetailableViewControllerDelegate?
     
-
+    // MARK: -IBOutlets
+    
+    @IBOutlet weak var tableView: UITableView!{
+        didSet{
+            tableView.dataSource = self
+            tableView.delegate = self
+        }
+    }
+    
     
     // MARK: - Initialization
     init(model: [House]){
         self.model = model
-        super.init(nibName:nil, bundle: nil)
+        super.init(nibName: nil, bundle: nil)
         title = "Westeros"
     }
     
@@ -52,23 +56,16 @@ class HouseListViewController: UITableViewController {
         let nib = UINib(nibName: "HouseCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: HouseCell.reuseIdentifierCell)
     }
-  
-   
+    
+}
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-       
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+extension HouseListDetailableViewController : UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.count
     }
-
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = HouseCell.reuseIdentifierCell
         
         // Descubrir el item (casa) que tenemos que mostar
@@ -87,45 +84,49 @@ class HouseListViewController: UITableViewController {
         
         // Devolver la celda
         return cell!
-
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Westeros"
     }
+}
     
+extension HouseListDetailableViewController: UITableViewDelegate{
     //MARK: - Delegate
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+  
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Averiguar la casa en cuestión
         let theHouse = house(at: indexPath.row)
-    
-
+        
+        print(theHouse.name)
+        
+        /*let houseDetailViewController = HouseDetailViewController(model: theHouse)
+         */
         //Siempre emitir las notificaciones a través de los dos métodos.
         
-        // Avisar al delegado
-        delegate?.houseListViewController(self, didSelectedHouse: theHouse)
+        //Avisar al delegado
+        delegate?.houseListDetailableViewController(self, didSelectedHouse: theHouse)
         
         // Enviar una notifiación
         let notificationCenter = NotificationCenter.default
-        let notification = Notification(name: .houseDidChangeNotification, object: self , userInfo: [Constants.houseKey: house])
+        let notification = Notification(name: .houseDidChangeNotification, object: self , userInfo: [Constants.houseKey: theHouse])
         notificationCenter.post(notification)
         
         //Guardamos la ultima casa seleccionada
         saveLastSelectedHouse(at: indexPath.row)
         
     }
-
+    
 }
 
 //MARK: - Persistence
 // (UserDefaults) Solo sirve para persistir pequeñas cantidades de objetos
 // los objetos tienen que ser sendillos: String, Int, Array
-extension HouseListViewController {
+extension HouseListDetailableViewController {
     
     func saveLastSelectedHouse (at index: Int){
         //Aquí vamos a guar
@@ -136,7 +137,7 @@ extension HouseListViewController {
         
         //guardar
         userDefaults.synchronize()
-    
+        
         
     }
     
@@ -152,4 +153,12 @@ extension HouseListViewController {
     
 }
 
+extension HouseListDetailableViewController : Detailable{
+
+    var detailViewController: UIViewController {
+        return (delegate as! UIViewController).wrappedInNavigation()
+    }
+    
+    
+}
 

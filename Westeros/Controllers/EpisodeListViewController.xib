@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MemberListViewController" customModule="Westeros" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EpisodeListViewController" customModule="Westeros" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="orT-6w-fvj" id="wE1-Y9-54Q"/>
+                <outlet property="tableView" destination="F1c-G7-cKs" id="zsh-nF-KRL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,25 +20,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="orT-6w-fvj">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F1c-G7-cKs">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="orT-6w-fvj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Jz7-0Q-7sn"/>
-                <constraint firstItem="orT-6w-fvj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="UtV-ct-yba"/>
-                <constraint firstItem="orT-6w-fvj" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="gqU-7p-TnV"/>
-                <constraint firstItem="orT-6w-fvj" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="sfk-sD-eAB"/>
+                <constraint firstItem="F1c-G7-cKs" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="3VR-au-Rrd"/>
+                <constraint firstItem="F1c-G7-cKs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fJF-Tp-fTD"/>
+                <constraint firstItem="F1c-G7-cKs" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="jds-dk-ZhV"/>
+                <constraint firstItem="F1c-G7-cKs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nxV-g6-Raz"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="138.40000000000001" y="150.67466266866569"/>
+            <point key="canvasLocation" x="138.40000000000001" y="146.17691154422789"/>
         </view>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oEu-Ul-aG3">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </tableView>
     </objects>
 </document>

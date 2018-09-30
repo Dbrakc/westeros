@@ -18,6 +18,7 @@ class WikiViewController: UIViewController {
     
     // MARK: - Model
     var model: House
+    var lastHouseDetailViewController : HouseDetailViewController?
     
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -38,8 +39,6 @@ class WikiViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
         
         //Subscribirse a la notificacion
         let notificationCenter = NotificationCenter.default
@@ -65,9 +64,21 @@ class WikiViewController: UIViewController {
         //Actualizar el modelo
         self.model = house
         
+        lastHouseDetailViewController = HouseDetailViewController(model: house)
+        
+        self.title = house.name
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: house.name, style: .plain, target: self, action: #selector(backButtonPress))
+        
         //Sincronizar
         syncModelWithView()
         
+    }
+    
+    @objc func backButtonPress (){
+        guard let viewController = lastHouseDetailViewController else{
+            return
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     // MARK: - Sync

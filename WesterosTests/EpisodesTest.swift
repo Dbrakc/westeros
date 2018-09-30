@@ -19,11 +19,11 @@ class EpisodesTest: XCTestCase {
 
     override func setUp() {
         date = Date.dateWithDay(29, month: 12, year: 1985)
-        episode = Episode(withTitle: "Episode 1", issueDate: date)
+        episode = Episode(withTitle: "Episode 1", issueDate: date, resume: Constants.resumeS7E2)
         date99 = Date.dateWithDay(1, month: 6, year: 1999)
-        episode2 = Episode(withTitle: "Episode 1", issueDate: date)
-        episode3 = Episode(withTitle: "Episode 0", issueDate: date)
-        episode4 = Episode(withTitle: "Episode 1", issueDate: date99)
+        episode2 = Episode(withTitle: "Episode 1", issueDate: date, resume: Constants.resumeS7E2)
+        episode3 = Episode(withTitle: "Episode 0", issueDate: date, resume: Constants.resumeS7E2)
+        episode4 = Episode(withTitle: "Episode 1", issueDate: date99, resume: Constants.resumeS7E2)
     }
 
     override func tearDown() {
@@ -64,5 +64,7 @@ class EpisodesTest: XCTestCase {
         XCTAssertGreaterThan(episode4, episode)
         XCTAssertGreaterThan(episode, episode3)
     }
+    
+  
 
 }

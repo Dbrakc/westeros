@@ -93,9 +93,13 @@ class HouseDetailViewController: UIViewController {
 }
 
 
-extension HouseDetailViewController : HouseListViewControllerDelegate{
+extension HouseDetailViewController : HouseListDetailableViewControllerDelegate{
+    func houseListDetailableViewController(_vc: UIViewController, willChangeViewController: Bool) -> UIViewController {
+        return self
+    }
+    
    
-    func houseListViewController(_ vc: HouseListViewController, didSelectedHouse house: House) {
+    func houseListDetailableViewController(_ vc: HouseListDetailableViewController, didSelectedHouse house: House) {
         
         self.model = house
         syncModelWithView()
@@ -103,4 +107,5 @@ extension HouseDetailViewController : HouseListViewControllerDelegate{
     
     
 }
+
 

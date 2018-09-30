@@ -8,24 +8,29 @@
 
 import Foundation
 
-
+typealias Episodes = Set<Episode>
 final class Season{
-    
+  // TODO: Make a set of episodes
     let name: String
-    let episodes: [Episode]
+    private let _episodes: Episodes
     var episodesCount: Int {
-        return self.episodes.count
+        return self._episodes.count
+    }
+    var episodesSorted : [Episode]{
+        return _episodes.sorted()
     }
     var releaseDate : Date {
-        let episodesSorted = episodes.sorted()
         return episodesSorted.first!.issueDate
     }
     
     init?(withName name: String, episodeArray episodes: [Episode]){
         self.name = name
-        guard  episodes.count > 0 else{return nil}
-        self.episodes = episodes
+        guard  !episodes.isEmpty else{return nil}
+        
+        self._episodes = Episodes(episodes)
     }
+    
+    
     
 }
 
@@ -61,8 +66,7 @@ extension Season : Comparable {
     static func < (lhs: Season, rhs: Season) -> Bool {
         return lhs.proxyForComparison < rhs.proxyForComparison
     }
-    
-    
 }
+
 
 

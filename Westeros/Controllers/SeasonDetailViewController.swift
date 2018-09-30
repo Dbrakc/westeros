@@ -11,10 +11,9 @@ import UIKit
 class SeasonDetailViewController: UIViewController {
     
     // MARK: - Properties
-    let season : Season
+    var season : Season
     
     // MARK: - IBOutlets
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var episodesNumberLabel: UILabel!
@@ -34,6 +33,7 @@ class SeasonDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
         syncModelWithView()
     }
     
@@ -41,12 +41,36 @@ class SeasonDetailViewController: UIViewController {
     // MARK: - Methods
     
     func syncModelWithView(){
+        title = season.name
         nameLabel.text = season.name
         releaseDateLabel.text = season.releaseDate.onlyDateDescription
         episodesNumberLabel.text = season.episodesCount.description
     }
+    
+    func setUpUI(){
+        let episodesButton = UIBarButtonItem(title: "Episodes", style: .plain, target: self, action: #selector(displayEpisodes))
+        
+        //Añadir el botón
+        navigationItem.setRightBarButton(episodesButton, animated: true)
+    }
+    
+    @objc func displayEpisodes(){
+        //Crear el VC destion
+        let episodeListViewController = EpisodeListViewController(withEpisodeArray: season.episodesSorted)
+        
+        
+        //Navergar a el push
+        navigationController?.pushViewController(episodeListViewController, animated: true)
+    }
+}
 
-
-   
-
+extension SeasonDetailViewController : SeasonListDetailableViewControllerDelegate{
+    func houseListDetailableViewController(_vc: UIViewController, willChangeViewController: Bool) -> UIViewController {
+        return self
+    }
+    
+    func SeasonListDetailableViewController(_ vc: SeasonListViewController, didSelectedSeason season: Season) {
+        self.season = season
+        syncModelWithView()
+    }
 }

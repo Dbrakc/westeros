@@ -29,6 +29,15 @@ final class House {
         self.wikiUrl = url
         self._members = Members()
     }
+    
+    init(name: HouseName, sigil: Sigil, words: Words, url: URL){
+        self.name = name.rawValue
+        self.sigil = sigil
+        self.words = words
+        self.wikiUrl = url
+        self._members = Members()
+        
+    }
 }
 
 extension House{
