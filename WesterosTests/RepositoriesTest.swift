@@ -56,7 +56,6 @@ class RepositoriesTest: XCTestCase {
     
     func testHouseLocalRepositoryHouseFiltering(){
         let filtered = Repository.local.houses{$0.count == 1}
-        
         XCTAssertEqual(filtered.first?.name, "Targaryen")
         
         
@@ -65,7 +64,9 @@ class RepositoriesTest: XCTestCase {
         
     }
     
-    
+}
+
+extension RepositoriesTest{
     
     func testLocalRepositorySeasonsCreation(){
         XCTAssertNotNil(localSeasons)
@@ -88,9 +89,10 @@ class RepositoriesTest: XCTestCase {
     
     func testSeasonsLocalRepo_setEpisodeSeasons_returnEpisodeWithSeason(){
         Repository.local.setEpisodesSeason(season: localSeasons[3])
-        XCTAssertEqual(localSeasons[3],localSeasons[3].episodesSorted[1].season )
+    XCTAssertEqual(localSeasons[3],localSeasons[3].episodesSorted[1].season )
         
     }
+    
     
 
 

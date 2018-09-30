@@ -74,3 +74,18 @@ extension SeasonDetailViewController : SeasonListDetailableViewControllerDelegat
         syncModelWithView()
     }
 }
+
+extension SeasonDetailViewController : UISplitViewControllerDelegate{
+    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+        switch displayMode {
+        case .primaryHidden:
+            self.navigationItem.setLeftBarButton(svc.displayModeButtonItem, animated: true)
+        default:
+            break
+        }
+        
+    }
+    
+    
+    
+}

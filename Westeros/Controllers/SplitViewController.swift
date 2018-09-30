@@ -15,10 +15,19 @@ protocol Detailable{
 
 
 
+
+
 class SplitViewController: UISplitViewController{
-    
+
     func showDetail(ofDetailable detailable: Detailable){
-        viewControllers[1]=detailable.detailViewController
+        guard let detailViewController = detailable.detailViewController as? UISplitViewControllerDelegate else{
+            return
+        }
+        self.delegate = detailViewController
+       
+        if(viewControllers.count>1){
+            viewControllers[1] = detailable.detailViewController
+        }
     }
     
 }
@@ -29,9 +38,16 @@ extension SplitViewController: UITabBarControllerDelegate{
         guard let navigationViewController = viewController as? UINavigationController, let detailable  = navigationViewController.visibleViewController as? Detailable else {
             return
         }
+        
+        
         showDetail(ofDetailable: detailable)
     }
+    
 }
+
+
+
+
 
 
 

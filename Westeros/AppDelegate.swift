@@ -71,6 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let splitViewController = SplitViewController()
         tabBarViewController.delegate = splitViewController
+        splitViewController.delegate = houseDetailWiewController
+      
+    
         
         splitViewController.viewControllers = [tabBarViewController, houseDetailWiewController.wrappedInNavigation()]
         

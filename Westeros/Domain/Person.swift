@@ -12,17 +12,11 @@ final class Person{
     
     // MARK : - Properties
     let name: String
-    let house: House
+    let house: House 
     private let _alias: String?
     
     var alias: String {
-       /* get{
-            if let alias = _alias {
-                return alias
-            }else{
-                return ""
-            }
-        }*/
+
         return _alias ?? ""
     }
     
@@ -34,10 +28,13 @@ final class Person{
         self.house = house
     }
     
-    /*convenience init(name: String, house: House){
-        self.init(name: name, alias: nil, house: house)
-       
-    }*/
+    // MARK:  - Methods
+    static func createMemberInHouse(withName name: String, alias: String? = nil, house: House){
+        let person = Person(name:name, alias: alias, house: house )
+        house.add(person: person)
+    }
+
+    
 }
 
 extension Person {

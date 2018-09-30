@@ -12,6 +12,8 @@ class HouseDetailViewController: UIViewController {
     
     //MARK: - Properties
     var model: House
+    
+    var collapsed: Bool = false
 
     //MARK: - Outlets
     @IBOutlet weak var houseNameLable: UILabel!
@@ -27,6 +29,7 @@ class HouseDetailViewController: UIViewController {
         self.model = model
         //Despues llamamos a super
         super.init(nibName: nil, bundle: nil)
+
       
         title = model.name
     }
@@ -63,9 +66,13 @@ class HouseDetailViewController: UIViewController {
         
         let membersButton = UIBarButtonItem(title: "Members", style: .plain, target: self, action: #selector(displayMembers))
         
+        
+        
+       
+        
         //Añadir el botón
         navigationItem.setRightBarButtonItems([membersButton,wikiButton], animated: true)
-        
+       
         
     }
     
@@ -89,7 +96,7 @@ class HouseDetailViewController: UIViewController {
         //Navergar a el push
         navigationController?.pushViewController(memberListViewController, animated: true)
     }
- 
+    
 }
 
 
@@ -108,4 +115,18 @@ extension HouseDetailViewController : HouseListDetailableViewControllerDelegate{
     
 }
 
+extension HouseDetailViewController : UISplitViewControllerDelegate{
+    
+  
+    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+        switch displayMode {
+        case .primaryHidden:
+            self.navigationItem.setLeftBarButton(svc.displayModeButtonItem, animated: true)
+        default:
+            break
+        }
+        
+    }
+   
+}
 

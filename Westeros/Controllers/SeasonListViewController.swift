@@ -72,11 +72,7 @@ extension SeasonListViewController : UITableViewDataSource{
 extension SeasonListViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedSeason = seasons (at:  indexPath.row)
-        /*let seasonDetailViewController = SeasonDetailViewController(withSeason: selectedSeason)*/
-        /*self.navigationController?.pushViewController(seasonDetailViewController, animated: true)*/
-        
-    
-        
+        if splitViewController!.viewControllers.count > 1 {
         //Siempre emitir las notificaciones a través de los dos métodos.
         
         //Avisar al delegado
@@ -89,6 +85,10 @@ extension SeasonListViewController : UITableViewDelegate{
         
         //Guardamos la ultima casa seleccionada
         saveLastSelectedSeason(at: indexPath.row)
+        }else{
+             let seasonDetailViewController = SeasonDetailViewController(withSeason: selectedSeason)
+        self.navigationController?.pushViewController(seasonDetailViewController, animated: true)
+        }
         
     }
 }

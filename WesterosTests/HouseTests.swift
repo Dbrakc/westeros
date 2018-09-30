@@ -91,11 +91,18 @@ class HouseTests: XCTestCase {
         XCTAssertEqual(stark.count, 2)
         
     }
-    
-    //Test que comprueba si los miembros viene ordenados
+
     
     func testHouseSortedMembersReturnsASortedArray(){
+        stark.add(persons: robb,arya)
+        XCTAssertEqual(arya, stark.sortedMember.first)
+        stark = House(name: "Stark", sigil: starkSigil, words:"Se acerca el invierno", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Stark")!)
+        robb = Person(name: "Robb", alias: "El joven Lobo", house: stark)
+        arya = Person(name: "Arya", house: stark)
+        stark.add(persons: arya,robb)
+        XCTAssertEqual(arya, stark.sortedMember.first)
         
     }
-
+    
+  
 }

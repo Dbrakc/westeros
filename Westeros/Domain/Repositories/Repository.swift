@@ -20,6 +20,8 @@ protocol HouseFactory {
     
     func house (named: String)->House?
     
+    func house(named houseName: HouseName ) -> House?
+    
     func houses (filteredBy filter: HouseFilter)->[House]
 }
 
@@ -29,6 +31,8 @@ protocol SeasonFactory {
     var seasons : [Season] {get}
     
     func seasons (filteredBy filter: SeasonFilter) ->[Season]
+    
+    func setEpisodesSeason(season: Season)
 }
 
 
@@ -47,17 +51,13 @@ final class LocalFactory: HouseFactory{
         let lannisterHouse = House(name: .lannister, sigil: lannisterSigil, words: "Oyer mi rugido", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Lannister")!)
         let targaryenHouse = House(name: .targaryen, sigil: targaryenSigil, words: "Fuego y sangre", url: URL.init(string: "https://awoiaf.westeros.org/index.php/House_Targaryen")!)
         //Characters creation
-        let robb = Person (name: "Robb", alias: "El Joven Lobo", house:starkHouse)
-        let arya = Person (name: "Arya", house: starkHouse)
-        let tyrion = Person (name: "Tyrion", alias: "El enano", house: lannisterHouse)
-        let cersei = Person (name: "Cersei", house: lannisterHouse)
-        let jaime = Person (name: "Jaime", alias: "El matarreyes", house: lannisterHouse)
-        let dani = Person (name: "Daenerys", alias: "Madre de dragones", house: targaryenHouse)
-        
-        //add characters to house
-        starkHouse.add(persons: arya, robb)
-        lannisterHouse.add(persons: tyrion, cersei, jaime)
-        targaryenHouse.add(person: dani)
+        Person.createMemberInHouse(withName: "Robb", alias: "El Joven Lobo", house:starkHouse)
+        Person.createMemberInHouse(withName: "Arya", house: starkHouse)
+        Person.createMemberInHouse(withName: "Tyrion", alias: "El enano", house: lannisterHouse)
+        Person.createMemberInHouse(withName: "Cersei", house: lannisterHouse)
+        Person.createMemberInHouse(withName: "Jaime", alias: "El matarreyes", house: lannisterHouse)
+        Person.createMemberInHouse(withName: "Daenerys", alias: "Madre de dragones", house: targaryenHouse)
+
         
         return [starkHouse,lannisterHouse, targaryenHouse].sorted()
     }
@@ -73,6 +73,8 @@ final class LocalFactory: HouseFactory{
     func houses(filteredBy: (House) -> Bool) -> [House] {
         return houses.filter(filteredBy)
     }
+    
+    
     
 }
 
@@ -127,6 +129,7 @@ extension LocalFactory : SeasonFactory{
         
         return seasons
     }
+    
     
     
     func seasons(filteredBy filter: (Season) -> Bool) -> [Season] {

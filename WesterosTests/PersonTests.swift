@@ -54,6 +54,14 @@ class PersonTests: XCTestCase {
         XCTAssertGreaterThan(ned, arya)
     }
     
+    func testPerson_CreateMemberInHouse_ReturnsAMemberInHouse(){
+        Person.createMemberInHouse(withName: "member1", house: starkHouse)
+        Person.createMemberInHouse(withName: "member2", alias: "alias2", house: starkHouse)
+        
+        starkHouse.sortedMember.forEach{XCTAssertEqual(starkHouse,$0.house)}
+        XCTAssertEqual(2, starkHouse.sortedMember.count)
+    }
+    
     
     
     

@@ -55,6 +55,7 @@ extension House{
     func add(persons: Person...){
         persons.forEach{add(person: $0)}
     }
+    
 }
 
 extension House{

@@ -49,7 +49,9 @@ class HouseListDetailableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Siempre que creamos celdas personalizadas tenemos que registrarlas
+
         registerCustomCell()
+        
     }
     
     func registerCustomCell(){
@@ -99,13 +101,12 @@ extension HouseListDetailableViewController: UITableViewDelegate{
   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         // Averiguar la casa en cuestión
         let theHouse = house(at: indexPath.row)
         
-        print(theHouse.name)
-        
-        /*let houseDetailViewController = HouseDetailViewController(model: theHouse)
-         */
+        if splitViewController!.viewControllers.count > 1{
+    
         //Siempre emitir las notificaciones a través de los dos métodos.
         
         //Avisar al delegado
@@ -118,6 +119,11 @@ extension HouseListDetailableViewController: UITableViewDelegate{
         
         //Guardamos la ultima casa seleccionada
         saveLastSelectedHouse(at: indexPath.row)
+        }else{
+            let houseDetailViewController = HouseDetailViewController(model: theHouse)
+            self.navigationController?.pushViewController(houseDetailViewController, animated: true)
+        }
+    
         
     }
     
@@ -161,4 +167,6 @@ extension HouseListDetailableViewController : Detailable{
     
     
 }
+
+
 
