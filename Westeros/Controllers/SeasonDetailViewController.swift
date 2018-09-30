@@ -55,21 +55,17 @@ class SeasonDetailViewController: UIViewController {
     }
     
     @objc func displayEpisodes(){
-        //Crear el VC destion
         let episodeListViewController = EpisodeListViewController(withEpisodeArray: season.episodesSorted)
-        
-        
-        //Navergar a el push
         navigationController?.pushViewController(episodeListViewController, animated: true)
     }
 }
 
 extension SeasonDetailViewController : SeasonListDetailableViewControllerDelegate{
-    func houseListDetailableViewController(_vc: UIViewController, willChangeViewController: Bool) -> UIViewController {
+    func seasonListDetailableViewController(_vc: UIViewController, willChangeViewController: Bool) -> UIViewController {
         return self
     }
     
-    func SeasonListDetailableViewController(_ vc: SeasonListViewController, didSelectedSeason season: Season) {
+    func seasonListDetailableViewController(_ vc: SeasonListViewController, didSelectedSeason season: Season) {
         self.season = season
         syncModelWithView()
     }

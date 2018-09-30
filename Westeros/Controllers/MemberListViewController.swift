@@ -28,7 +28,7 @@ class MemberListViewController: UIViewController {
         self.model  =  model
         super.init(nibName: nil, bundle: nil)
         self.title = "Members"
-    
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,11 +39,9 @@ class MemberListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //Subscribirse a la notificacion
+    
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(houseDidChange), name: .houseDidChangeNotification, object: nil)
-        
     }
     
   
@@ -51,20 +49,12 @@ class MemberListViewController: UIViewController {
     //Mark: Notifications
     
     @objc func houseDidChange(notification: Notification){
-        //Sacar la info de la notificacion
         guard let info = notification.userInfo,
             let house : House = info[Constants.houseKey] as? House else {return}
-        
-        
-        //Actualizar el modelo
         self.model = house.sortedMember
-        
         self.lastHouseDetailViewController = HouseDetailViewController(model: house)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: house.name, style: .plain, target: self, action: #selector(backButtonPress))
-        
-        //Sincronizar
         tableView.reloadData()
-        
     }
     
     @objc func backButtonPress (){
@@ -73,11 +63,7 @@ class MemberListViewController: UIViewController {
         }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-    
-    // MARK:  Methods
-    
 
-    
     
 }
 
@@ -88,20 +74,13 @@ extension MemberListViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = "PersonCell"
-        
-        //Descubrimos cual es la persona que hay que mostrar
         let person = model[indexPath.row]
-        
-        //Creamos la celda (o nos la dan de cache)
         var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
         if cell == nil{
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
         }
-        
-        //Sincronizar modelo-vista
         cell?.textLabel?.text = person.name
         cell?.detailTextLabel?.text = person.alias
-        
         return cell!
     }
     

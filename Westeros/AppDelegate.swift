@@ -18,53 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .cyan
-        
-        //Creamos los modelo
+
         let houses = Repository.local.houses
         let seasons = Repository.local.seasons
-        //creamos los controlador
-        /*var controllers = [UIViewController]()
         
-        for house in houses{
-           controllers.append(HouseDetailViewController(model: house).wrappedInNavigation())
-        }*/
-        /*let controllers = houses
-            .map{HouseDetailViewController(model: $0)}
-            .map{$0.wrappedInNavigation()}
-        
-        
-        //Creamos el combinador
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = controllers*/
-        
-      
-        //Master
+    
         let houseListDetailableViewController = HouseListDetailableViewController(model: houses)
         let lastHouseSelected = houseListDetailableViewController.lastSelectedHouse()
-        //Detail
         let houseDetailWiewController = HouseDetailViewController(model: lastHouseSelected)
-        
-        
-        //Asignar delegados
-        //Un objeto solo puede tener un delegado
-        //Un objeto sí puede ser delegado de varios otros
-        
-        
-        
-        //Crear el combinador
-        
        
+        
         let seasonListViewControler = SeasonListViewController(withSeasonsArray: seasons)
         let lastSeasonSelected = seasonListViewControler.lastSelectedSeason()
         let seasonDetailViewControler = SeasonDetailViewController(withSeason: lastSeasonSelected)
-        let episodesListViewControler = EpisodeListViewController(withEpisodeArray: seasons[0].episodesSorted)
+        
         
         houseListDetailableViewController.delegate = houseDetailWiewController
         seasonListViewControler.delegate = seasonDetailViewControler
         
         
-        //Asignamos el RootViewController
-        let houseCollectionVC = HouseCollectionViewController(withModel: houses)
         
         let tabBarViewController = UITabBarController ()
         tabBarViewController.viewControllers = [houseListDetailableViewController.wrappedInNavigation(), seasonListViewControler.wrappedInNavigation()]
@@ -73,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarViewController.delegate = splitViewController
         splitViewController.delegate = houseDetailWiewController
       
-    
         
         splitViewController.viewControllers = [tabBarViewController, houseDetailWiewController.wrappedInNavigation()]
         

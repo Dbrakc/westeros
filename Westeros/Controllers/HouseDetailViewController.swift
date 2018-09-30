@@ -61,39 +61,20 @@ class HouseDetailViewController: UIViewController {
     }
     
     func setupUI() {
-        //Crear los botones
         let wikiButton = UIBarButtonItem(title: "Wiki", style: .plain, target: self, action: #selector(displayWiki))
-        
         let membersButton = UIBarButtonItem(title: "Members", style: .plain, target: self, action: #selector(displayMembers))
-        
-        
-        
-       
-        
-        //Añadir el botón
         navigationItem.setRightBarButtonItems([membersButton,wikiButton], animated: true)
-       
-        
+    
     }
     
     
     @objc func displayWiki(){
-        //Crear el VC destion
         let wikiViewController = WikiViewController(model: model)
-        
-    
-        
-        //Navegar a el push
         navigationController?.pushViewController(wikiViewController, animated: true)
-        
     }
     
     @objc func displayMembers(){
-        //Crear el VC destion
         let memberListViewController = MemberListViewController(model: model.sortedMember)
-        
-        
-        //Navergar a el push
         navigationController?.pushViewController(memberListViewController, animated: true)
     }
     
@@ -104,20 +85,15 @@ extension HouseDetailViewController : HouseListDetailableViewControllerDelegate{
     func houseListDetailableViewController(_vc: UIViewController, willChangeViewController: Bool) -> UIViewController {
         return self
     }
-    
-   
+
     func houseListDetailableViewController(_ vc: HouseListDetailableViewController, didSelectedHouse house: House) {
-        
         self.model = house
         syncModelWithView()
     }
-    
-    
 }
 
 extension HouseDetailViewController : UISplitViewControllerDelegate{
-    
-  
+
     func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
         switch displayMode {
         case .primaryHidden:
@@ -125,8 +101,6 @@ extension HouseDetailViewController : UISplitViewControllerDelegate{
         default:
             break
         }
-        
     }
-   
 }
 

@@ -8,7 +8,6 @@
 
 import UIKit
 
-//Te abstrae de donde vienen los datos
 final class Repository {
     static let local = LocalFactory()
 }
@@ -36,10 +35,7 @@ protocol SeasonFactory {
 }
 
 
-//Cuando necesitamos crear muchos objetos del mismo tipo
 final class LocalFactory: HouseFactory{
-    
-    
     var houses : [House]{
         //Houses creation here
         

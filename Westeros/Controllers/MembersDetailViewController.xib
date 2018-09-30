@@ -22,50 +22,71 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvW-sW-ABm">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvW-sW-ABm">
                     <rect key="frame" x="16" y="118" width="343" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMw-kV-43k">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMw-kV-43k">
                     <rect key="frame" x="16" y="218" width="343" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usj-ZM-QL4">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usj-ZM-QL4">
                     <rect key="frame" x="16" y="256" width="343" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Sdo-tm-WK9"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="House" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJc-RF-AG4">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="House" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJc-RF-AG4">
                     <rect key="frame" x="14" y="323" width="343" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRD-qx-5zR">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRD-qx-5zR">
                     <rect key="frame" x="16" y="369" width="343" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeK-H5-0Ov">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeK-H5-0Ov">
                     <rect key="frame" x="16" y="157" width="343" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="736-9M-Bht"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lJc-RF-AG4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="14" id="4dP-ED-FFa"/>
+                <constraint firstItem="lJc-RF-AG4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="8Ap-Sh-ljg"/>
+                <constraint firstItem="gvW-sW-ABm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="98" id="8C7-I7-t1x"/>
+                <constraint firstItem="jRD-qx-5zR" firstAttribute="top" secondItem="lJc-RF-AG4" secondAttribute="bottom" constant="25" id="BLZ-6r-Zsn"/>
+                <constraint firstItem="gvW-sW-ABm" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="JZX-X7-iW4"/>
+                <constraint firstItem="gvW-sW-ABm" firstAttribute="trailing" secondItem="HeK-H5-0Ov" secondAttribute="trailing" id="PWQ-Ux-3Ck"/>
+                <constraint firstItem="OMw-kV-43k" firstAttribute="leading" secondItem="Usj-ZM-QL4" secondAttribute="leading" id="SXe-wg-rl0"/>
+                <constraint firstItem="gvW-sW-ABm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="Vjf-4w-EhU"/>
+                <constraint firstItem="HeK-H5-0Ov" firstAttribute="trailing" secondItem="OMw-kV-43k" secondAttribute="trailing" id="Z0G-ce-BlA"/>
+                <constraint firstItem="Usj-ZM-QL4" firstAttribute="top" secondItem="OMw-kV-43k" secondAttribute="bottom" constant="17" id="bhG-Ev-zp1"/>
+                <constraint firstItem="Usj-ZM-QL4" firstAttribute="leading" secondItem="jRD-qx-5zR" secondAttribute="leading" id="fPY-1M-whg"/>
+                <constraint firstItem="Usj-ZM-QL4" firstAttribute="trailing" secondItem="jRD-qx-5zR" secondAttribute="trailing" id="iJe-8H-pBt"/>
+                <constraint firstItem="OMw-kV-43k" firstAttribute="trailing" secondItem="Usj-ZM-QL4" secondAttribute="trailing" id="kOz-pg-CrP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jRD-qx-5zR" secondAttribute="bottom" constant="277" id="lu5-6Q-Za9"/>
+                <constraint firstItem="HeK-H5-0Ov" firstAttribute="leading" secondItem="OMw-kV-43k" secondAttribute="leading" id="of9-y5-l6q"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lJc-RF-AG4" secondAttribute="trailing" constant="18" id="qY1-hi-eB1"/>
+                <constraint firstItem="gvW-sW-ABm" firstAttribute="leading" secondItem="HeK-H5-0Ov" secondAttribute="leading" id="yMe-mg-Pqg"/>
+                <constraint firstItem="HeK-H5-0Ov" firstAttribute="top" secondItem="gvW-sW-ABm" secondAttribute="bottom" constant="18" id="zmL-tz-vlJ"/>
+                <constraint firstItem="OMw-kV-43k" firstAttribute="top" secondItem="HeK-H5-0Ov" secondAttribute="bottom" constant="40" id="zw4-ua-9f0"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.40000000000001" y="146.17691154422789"/>
         </view>

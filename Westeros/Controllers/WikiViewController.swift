@@ -26,28 +26,21 @@ class WikiViewController: UIViewController {
     }
     
     init(model: House) {
-        //1. Limpio de niles
         self.model = model
-        //2. llamo a super
         super.init(nibName: nil, bundle: Bundle (for: type(of: self)))
-        //3. Usas las properties de tu superclase
         title = model.name;
-        
     }
     
     // MARK: - LifeCycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //Subscribirse a la notificacion
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(houseDidChange), name: .houseDidChangeNotification, object: nil)
-        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Asignar delegados
         webView.navigationDelegate = self
         syncModelWithView()
     }
@@ -56,20 +49,12 @@ class WikiViewController: UIViewController {
     //Mark: Notifications
     
     @objc func houseDidChange(notification: Notification){
-        //Sacar la info de la notificacion
         guard let info = notification.userInfo,
             let house : House = info[Constants.houseKey] as? House else {return}
-        
-        
-        //Actualizar el modelo
         self.model = house
-        
         lastHouseDetailViewController = HouseDetailViewController(model: house)
-        
         self.title = house.name
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: house.name, style: .plain, target: self, action: #selector(backButtonPress))
-        
-        //Sincronizar
         syncModelWithView()
         
     }
@@ -97,23 +82,17 @@ class WikiViewController: UIViewController {
 extension WikiViewController: WKNavigationDelegate{
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        //Detener el spinner
         loadingView.stopAnimating()
-        
-        //Ocultarlo
         loadingView.isHidden = true
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        
         let type = navigationAction.navigationType
-        
         switch type {
         case .linkActivated, .formResubmitted, .formSubmitted:
             decisionHandler(.cancel)
         default:
             decisionHandler(.allow)
         }
-    }
-    
+    }    
 }

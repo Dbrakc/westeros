@@ -36,7 +36,6 @@ class EpisodeListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK:  LyfeCycle
     
     // MARK:  LifeCycle
     
@@ -53,18 +52,13 @@ class EpisodeListViewController: UIViewController {
     //Mark: Notifications
     
     @objc func seasonDidChange(notification: Notification){
-        //Sacar la info de la notificacion
         guard let info = notification.userInfo,
             let season : Season = info[Constants.seasonKey] as? Season else {return}
-        
-        
-        //Actualizar el modelo
+
         self.episodes = season.episodesSorted
         lastSeasonDeatilViewController = SeasonDetailViewController(withSeason: season)
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: season.name, style: .plain, target: self, action: #selector(backButtonPress))
-        
-        //Sincronizar
         tableView.reloadData()
         
     }
@@ -110,7 +104,6 @@ extension EpisodeListViewController : UITableViewDelegate{
         let selectedEpisode = episodes (at:  indexPath.row)
         let episodeDetailViewController = EpisodeDetailViewController(withEpisode: selectedEpisode)
         self.navigationController?.pushViewController(episodeDetailViewController, animated: true)
-        
     }
 
 }

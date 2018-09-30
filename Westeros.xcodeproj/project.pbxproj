@@ -48,10 +48,6 @@
 		23B0C6B72152DF2D00F0E3C8 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C6B52152DF2D00F0E3C8 /* HouseCell.swift */; };
 		23B0C6B82152DF2D00F0E3C8 /* HouseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B0C6B62152DF2D00F0E3C8 /* HouseCell.xib */; };
 		23B0C6BA2152E95400F0E3C8 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C6B92152E95400F0E3C8 /* Episode.swift */; };
-		23B0C6C22152EF9600F0E3C8 /* HouseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C6C02152EF9600F0E3C8 /* HouseCollectionViewController.swift */; };
-		23B0C6C32152EF9600F0E3C8 /* HouseCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B0C6C12152EF9600F0E3C8 /* HouseCollectionViewController.xib */; };
-		23B0C6C62152F2DC00F0E3C8 /* HouseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C6C42152F2DC00F0E3C8 /* HouseCollectionViewCell.swift */; };
-		23B0C6C72152F2DC00F0E3C8 /* HouseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B0C6C52152F2DC00F0E3C8 /* HouseCollectionViewCell.xib */; };
 		23F8C819215E7BCA00624B09 /* HouseName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8C818215E7BCA00624B09 /* HouseName.swift */; };
 		23F9102A215F909F00CEC21A /* MembersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F91028215F909F00CEC21A /* MembersDetailViewController.swift */; };
 		23F9102B215F909F00CEC21A /* MembersDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F91029215F909F00CEC21A /* MembersDetailViewController.xib */; };
@@ -113,10 +109,6 @@
 		23B0C6B52152DF2D00F0E3C8 /* HouseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseCell.swift; sourceTree = "<group>"; };
 		23B0C6B62152DF2D00F0E3C8 /* HouseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseCell.xib; sourceTree = "<group>"; };
 		23B0C6B92152E95400F0E3C8 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
-		23B0C6C02152EF9600F0E3C8 /* HouseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseCollectionViewController.swift; sourceTree = "<group>"; };
-		23B0C6C12152EF9600F0E3C8 /* HouseCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseCollectionViewController.xib; sourceTree = "<group>"; };
-		23B0C6C42152F2DC00F0E3C8 /* HouseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseCollectionViewCell.swift; sourceTree = "<group>"; };
-		23B0C6C52152F2DC00F0E3C8 /* HouseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseCollectionViewCell.xib; sourceTree = "<group>"; };
 		23F8C818215E7BCA00624B09 /* HouseName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseName.swift; sourceTree = "<group>"; };
 		23F91028215F909F00CEC21A /* MembersDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersDetailViewController.swift; sourceTree = "<group>"; };
 		23F91029215F909F00CEC21A /* MembersDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MembersDetailViewController.xib; sourceTree = "<group>"; };
@@ -153,7 +145,6 @@
 		231C1AFD2149A29A00707320 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				23B0C6BB2152EEB500F0E3C8 /* extra */,
 				231C1AFE2149A32000707320 /* HouseDetailViewController.swift */,
 				231C1AFF2149A32000707320 /* HouseDetailViewController.xib */,
 				234034412150336F00BDB0C2 /* WikiViewController.swift */,
@@ -267,17 +258,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		23B0C6BB2152EEB500F0E3C8 /* extra */ = {
-			isa = PBXGroup;
-			children = (
-				23B0C6C02152EF9600F0E3C8 /* HouseCollectionViewController.swift */,
-				23B0C6C12152EF9600F0E3C8 /* HouseCollectionViewController.xib */,
-				23B0C6C42152F2DC00F0E3C8 /* HouseCollectionViewCell.swift */,
-				23B0C6C52152F2DC00F0E3C8 /* HouseCollectionViewCell.xib */,
-			);
-			path = extra;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -366,11 +346,9 @@
 				231C1AF92149A1B500707320 /* lannister.jpg in Resources */,
 				234034442150336F00BDB0C2 /* WikiViewController.xib in Resources */,
 				23B0C6B82152DF2D00F0E3C8 /* HouseCell.xib in Resources */,
-				23B0C6C32152EF9600F0E3C8 /* HouseCollectionViewController.xib in Resources */,
 				231C1AFB2149A1BC00707320 /* targaryenSmall.jpg in Resources */,
 				23064987215D710300778E85 /* SplitViewController.xib in Resources */,
 				23233B84215189B900E7D849 /* MemberListViewController.xib in Resources */,
-				23B0C6C72152F2DC00F0E3C8 /* HouseCollectionViewCell.xib in Resources */,
 				23136662215848A800FF86FF /* SeasonListViewController.xib in Resources */,
 				231C1B012149A32000707320 /* HouseDetailViewController.xib in Resources */,
 				231C20872159616E00024F2D /* EpisodeDetailViewController.xib in Resources */,
@@ -396,7 +374,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				231C1B0C2149BCC800707320 /* Repository.swift in Sources */,
-				23B0C6C62152F2DC00F0E3C8 /* HouseCollectionViewCell.swift in Sources */,
 				2306499C215DAB8900778E85 /* HouseListDetailableViewController.swift in Sources */,
 				23F9102A215F909F00CEC21A /* MembersDetailViewController.swift in Sources */,
 				23B0C6BA2152E95400F0E3C8 /* Episode.swift in Sources */,
@@ -415,7 +392,6 @@
 				231C20862159616E00024F2D /* EpisodeDetailViewController.swift in Sources */,
 				231382F22158B575008A0A69 /* EpisodeListViewController.swift in Sources */,
 				23B0C6B22152DAC500F0E3C8 /* Notification+Name.swift in Sources */,
-				23B0C6C22152EF9600F0E3C8 /* HouseCollectionViewController.swift in Sources */,
 				23B0C6AE2152D06D00F0E3C8 /* Date.swift in Sources */,
 				23B0C6B72152DF2D00F0E3C8 /* HouseCell.swift in Sources */,
 				23064986215D710300778E85 /* SplitViewController.swift in Sources */,

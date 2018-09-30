@@ -20,14 +20,14 @@ protocol Detailable{
 class SplitViewController: UISplitViewController{
 
     func showDetail(ofDetailable detailable: Detailable){
-        guard let detailViewController = detailable.detailViewController as? UISplitViewControllerDelegate else{
+        /*guard let detailViewController = detailable.detailViewController as? UISplitViewControllerDelegate else{
             return
         }
-        self.delegate = detailViewController
-       
-        if(viewControllers.count>1){
+        self.delegate = detailViewController*/
+        if self.viewControllers.count > 1 {
             viewControllers[1] = detailable.detailViewController
         }
+       
     }
     
 }

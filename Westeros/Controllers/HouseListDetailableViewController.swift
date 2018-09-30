@@ -8,12 +8,7 @@
 
 import UIKit
 protocol HouseListDetailableViewControllerDelegate {
-    //Should
-    //Will
-    //Did
-    //El primer parametro de las funciones del Delegate es SIEMPRE el objeto
     func houseListDetailableViewController(_ vc: HouseListDetailableViewController, didSelectedHouse house: House)
-    
 }
 
 
@@ -48,10 +43,7 @@ class HouseListDetailableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Siempre que creamos celdas personalizadas tenemos que registrarlas
-
         registerCustomCell()
-        
     }
     
     func registerCustomCell(){
@@ -69,22 +61,14 @@ extension HouseListDetailableViewController : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = HouseCell.reuseIdentifierCell
-        
-        // Descubrir el item (casa) que tenemos que mostar
         let house = model[indexPath.row]
-        
-        // Crear una celda o que nos la den del caché
         var cell = tableView.dequeueReusableCell(withIdentifier: cellId ) as? HouseCell
         if cell == nil {
             cell = HouseCell(style: .default, reuseIdentifier: cellId)
         }
-        
-        // Sincronizar celda (view) y casa (model)
         cell?.sigilImageView.image = house.sigil.image
         cell?.nameLabel.text = house.name
         cell?.wordsLabel.text = house.words
-        
-        // Devolver la celda
         return cell!
     }
     
@@ -101,27 +85,16 @@ extension HouseListDetailableViewController: UITableViewDelegate{
   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // Averiguar la casa en cuestión
         let theHouse = house(at: indexPath.row)
-        
         if splitViewController!.viewControllers.count > 1{
-    
-        //Siempre emitir las notificaciones a través de los dos métodos.
-        
-        //Avisar al delegado
-        delegate?.houseListDetailableViewController(self, didSelectedHouse: theHouse)
-        
-        // Enviar una notifiación
-        let notificationCenter = NotificationCenter.default
-        let notification = Notification(name: .houseDidChangeNotification, object: self , userInfo: [Constants.houseKey: theHouse])
-        notificationCenter.post(notification)
-        
-        //Guardamos la ultima casa seleccionada
-        saveLastSelectedHouse(at: indexPath.row)
+            delegate?.houseListDetailableViewController(self, didSelectedHouse: theHouse)
+            let notificationCenter = NotificationCenter.default
+            let notification = Notification(name: .houseDidChangeNotification, object: self , userInfo: [Constants.houseKey: theHouse])
+            notificationCenter.post(notification)
+            saveLastSelectedHouse(at: indexPath.row)
         }else{
             let houseDetailViewController = HouseDetailViewController(model: theHouse)
-            self.navigationController?.pushViewController(houseDetailViewController, animated: true)
+        self.navigationController?.pushViewController(houseDetailViewController, animated: true)
         }
     
         
@@ -130,26 +103,16 @@ extension HouseListDetailableViewController: UITableViewDelegate{
 }
 
 //MARK: - Persistence
-// (UserDefaults) Solo sirve para persistir pequeñas cantidades de objetos
-// los objetos tienen que ser sendillos: String, Int, Array
 extension HouseListDetailableViewController {
     
     func saveLastSelectedHouse (at index: Int){
-        //Aquí vamos a guar
         let userDefaults  = UserDefaults.standard
-        
-        //lo insertamos en el diccionario de userDefaults
         userDefaults.set(index, forKey: Constants.lastHouseKey)
-        
-        //guardar
         userDefaults.synchronize()
-        
-        
     }
     
     func lastSelectedHouse () -> House {
-        //Averiguar cual es la ultima row sel
-        let index = UserDefaults.standard.integer(forKey: Constants.lastHouseKey) //Value 0 es default
+        let index = UserDefaults.standard.integer(forKey: Constants.lastHouseKey)
         return house(at: index)
     }
     
